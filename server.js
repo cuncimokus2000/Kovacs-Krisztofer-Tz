@@ -7,10 +7,23 @@ app.use("/", (req, res, next) => {
 }) 
 
 app.get("/hello", (req, res, next) => { 
-    res.send("hello response"); 
+    res.send("szia uram"); 
 }) 
 
 
-app.listen(3000, () => { 
-    console.log("Server is Running"); 
+app.listen(3307, () => { 
+    console.log("A szerver fut"); 
+})
+
+
+app.get('/termekek', (req, res) => {
+    const sql = `
+    SELECT termekek.* FROM termekek join kategoriak ON termekek.kategoria_id = kategoria_id ORDER BY termekek.ar ASC;`;
+    db.query(sql, (error,results) => {
+
+        if (error){
+
+            return res.status(500).json( "hiba: error message(500-as)")
+        }
+    })
 })
