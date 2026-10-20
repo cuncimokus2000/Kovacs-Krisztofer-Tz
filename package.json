@@ -1,0 +1,27 @@
+{
+  "dependencies": {
+    "express": "^5.3.0",
+    "mysql2": "^3.24.6",
+    "node.js": "^0.0.1-security"
+  },
+  "name": "kovacs-krisztofer-tz",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cuncimokus2000/Kovacs-Krisztofer-Tz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/cuncimokus2000/Kovacs-Krisztofer-Tz/issues"
+  },
+  "homepage": "https://github.com/cuncimokus2000/Kovacs-Krisztofer-Tz#readme"
+}
