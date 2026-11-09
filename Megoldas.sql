@@ -22,7 +22,26 @@ insert INTO termekek (id, kategoria_id, nev, ar, keszlet, elerheto) VALUES
 (9, 3, 'Robotporszívó smart' , 69900 , 3 , 1 ),
 (10, 1, 'Gamer fejhallgató mikrofonnal' , 12990 , 0 , 0 );
 
+ 
+
+ 
 //rossz
 ALTER TABLE termekek  ADD CONSTRAINT kategoriak FOREIGN KEY termekek_id REFERENCES termekek(id);
 
-SELECT * FROM `termekek` join kategoriak ON termekek.kategoria_id = kategoria_id ORDER BY termekek.ar ASC;
+1 SELECT * FROM termekek join kategoriak ON termekek.kategoria_id = kategoria_id ORDER BY termekek.ar ASC;
+
+2
+
+3 SELECT * FROM termekek WHERE nev LIKE '%egér%';
+
+4
+
+5
+
+UPDATE termekek SET ar = 5990 WHERE id = 1;
+
+UPDATE kategoriak SET nev = 'mikro' WHERE id = 1;
+
+DELETE FROM termekek WHERE id = 10;
+
+DELETE FROM kategoriak WHERE id = 6;
