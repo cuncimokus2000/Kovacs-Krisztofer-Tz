@@ -30,13 +30,15 @@ ALTER TABLE termekek  ADD CONSTRAINT kategoriak FOREIGN KEY termekek_id REFERENC
 
 1 SELECT * FROM termekek join kategoriak ON termekek.kategoria_id = kategoria_id ORDER BY termekek.ar ASC;
 
-2
+2 SELECT * FROM termekek WHERE elerheto = 1 AND keszlet > 0;
 
 3 SELECT * FROM termekek WHERE nev LIKE '%egér%';
 
-4
+4 SELECT kategoriak.nev, COUNT(termekek.id), ROUND(AVG(termekek.ar)) FROM kategoriak 
 
-5
+INNER JOIN termekek ON kategoriak.id = termekek.kategoria_id GROUP BY kategoriak.id, kategoriak.nev;
+
+5 SELECT nev, ar, keszle FROM termekek WHERE ar > 10000 ORDER BY keszlet DESC;
 
 UPDATE termekek SET ar = 5990 WHERE id = 1;
 
