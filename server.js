@@ -35,7 +35,7 @@ app.get('/termekek', async (req, res) => {
         SELECT termekek.*
         FROM termekek
         JOIN kategoriak ON termekek.kategoria_id = kategoriak.id
-        ORDER BY termekek.ar ASC;
+        ORDER BY termekek.ar ASC
         `;
 
         const [results] = await dbPool.query(sql);
@@ -49,7 +49,7 @@ app.get('/termekek', async (req, res) => {
 app.get('/termekek/elerheto', async (req, res) => {
     try {
         const sql = `
-        SELECT * FROM termekek WHERE elerheto = 1 AND keszlet > 0;
+        SELECT * FROM termekek WHERE elerheto = 1 AND keszlet > 0
         `;
 
         const [results] = await dbPool.query(sql);
@@ -64,7 +64,7 @@ app.get('/termekek/elerheto', async (req, res) => {
 app.get('/termekek/kereses/:szoveg ', async (req, res) => {
     try {
         const sql = `
-        SELECT * FROM termekek WHERE elerheto = 1 AND keszlet > 0;
+        SELECT * FROM termekek WHERE elerheto = 1 AND keszlet > 0
         `;
 
         const [results] = await dbPool.query(sql);
@@ -75,6 +75,36 @@ app.get('/termekek/kereses/:szoveg ', async (req, res) => {
         res.status(500).json({ error: "Adatbázis hiba" });
     }
 });
+app.get('/kategoriak/statisztika  ', async (req, res) => {
+    try {
+        const sql = `
+       SELECT kategoriak.nev, COUNT(termekek.id), ROUND(AVG(termekek.ar)) FROM kategoriak 
+
+INNER JOIN termekek ON kategoriak.id = termekek.kategoria_id GROUP BY kategoriak.id, kategoriak.nev
+ `;
+
+        const [results] = await dbPool.query(sql);
+        res.json(results);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Adatbázis hiba" });
+    }
+});
+app.get('/termekek/dragak ', async (req, res) => {
+    try {
+        const sql = `
+        SELECT nev, ar, keszle FROM termekek WHERE ar > 10000 ORDER BY keszlet DESC `;
+
+        const [results] = await dbPool.query(sql);
+        res.json(results);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: "Adatbázis hiba" });
+    }
+});
+
 
 
 // Felhasználók lekérdezése
